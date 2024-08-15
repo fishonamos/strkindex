@@ -12,18 +12,6 @@ import { connectedtodb } from "./dbconfig";
 
 async function main() {
   const collection = await connectedtodb();
-
-// dotenv.config();
-
-// const MONGODB_URI = process.env.MONGODB_URI ||
-// const COLLECTION_NAME = "events";
-
-// async function main() {
-//   const mongoClient = new MongoClient(MONGODB_URI);
-//   await mongoClient.connect();
-//   const db = mongoClient.db(DATABASE_NAME);
-//   const collection = db.collection(COLLECTION_NAME);
-
   const client = new StreamClient({
     url: "https://sepolia.starknet.a5a.ch",
     token: process.env.APIBARA_TOKEN,
