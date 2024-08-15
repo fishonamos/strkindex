@@ -8,21 +8,24 @@ import {
 import { MongoClient } from "mongodb";
 import { Provider, constants } from "starknet";
 import * as dotenv from "dotenv";
-
-dotenv.config();
-
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://fishon:ScqLhbEZXakuxCeC@cluster0.pcf7bqq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
-const DATABASE_NAME = "starknet";
-const COLLECTION_NAME = "events";
+import { connectedtodb } from "./dbconfig";
 
 async function main() {
-  const mongoClient = new MongoClient(MONGODB_URI);
-  await mongoClient.connect();
-  const db = mongoClient.db(DATABASE_NAME);
-  const collection = db.collection(COLLECTION_NAME);
+  const collection = await connectedtodb();
+
+// dotenv.config();
+
+// const MONGODB_URI = process.env.MONGODB_URI ||
+// const COLLECTION_NAME = "events";
+
+// async function main() {
+//   const mongoClient = new MongoClient(MONGODB_URI);
+//   await mongoClient.connect();
+//   const db = mongoClient.db(DATABASE_NAME);
+//   const collection = db.collection(COLLECTION_NAME);
 
   const client = new StreamClient({
-    url: "mainnet.starknet.a5a.ch",
+    url: "https://sepolia.starknet.a5a.ch",
     token: process.env.APIBARA_TOKEN,
     async onReconnect(err, retryCount) {
       console.log("reconnect", err, retryCount);
@@ -33,7 +36,7 @@ async function main() {
 
   const provider = new Provider({
     nodeUrl: "https://free-rpc.nethermind.io/sepolia-juno/",
-    chainId: constants.StarknetChainId.SN_MAIN,
+    chainId: constants.StarknetChainId.SN_SEPOLIA,
   });
 
   const { block_number } = await provider.getBlockLatestAccepted();

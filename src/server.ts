@@ -1,12 +1,8 @@
 import { ApolloServer, gql } from 'apollo-server';
-import { MongoClient } from 'mongodb';
 import * as dotenv from 'dotenv';
+import { connectedtodb } from './dbconfig';
 
 dotenv.config();
-
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://fishon:ScqLhbEZXakuxCeC@cluster0.pcf7bqq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
-const DATABASE_NAME = "starknet";
-const COLLECTION_NAME = "events";
 
 const typeDefs = gql`
   type AccountEvent {
@@ -42,10 +38,8 @@ const resolvers = {
 };
 
 async function startServer() {
-  const mongoClient = new MongoClient(MONGODB_URI);
-  await mongoClient.connect();
-  const db = mongoClient.db(DATABASE_NAME);
-  const collection = db.collection(COLLECTION_NAME);
+
+  const { collection } = await connectedtodb();
 
   const server = new ApolloServer({
     typeDefs,
