@@ -3,7 +3,7 @@ import { Provider, constants } from "starknet";
 import * as dotenv from "dotenv";
 dotenv.config();
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://fishon:ScqLhbEZXakuxCeC@cluster0.pcf7bqq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const MONGODB_URI = process.env.MONGODB_URI!;
 const DATABASE_NAME = "starknet";
 const COLLECTION_NAME = "events";
 
