@@ -72,7 +72,7 @@ async function main() {
   }
 }
 
-async function handleEvent(
+export async function handleEvent(
   header: v1alpha2.IBlockHeader,
   event: v1alpha2.IEvent,
   collection: any

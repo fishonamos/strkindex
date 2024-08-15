@@ -1,5 +1,4 @@
 import { MongoClient } from "mongodb";
-import { Provider, constants } from "starknet";
 import * as dotenv from "dotenv";
 dotenv.config();
 
