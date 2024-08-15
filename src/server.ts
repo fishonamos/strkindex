@@ -39,7 +39,7 @@ const resolvers = {
 
 async function startServer() {
 
-  const { collection } = await connectedtodb();
+  const collection = await connectedtodb();
 
   const server = new ApolloServer({
     typeDefs,

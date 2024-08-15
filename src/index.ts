@@ -1,17 +1,13 @@
 import { StreamClient } from "@apibara/protocol";
-import {
-  Filter,
-  StarkNetCursor,
-  v1alpha2,
-  FieldElement,
-} from "@apibara/starknet";
-import { MongoClient } from "mongodb";
+import { Filter, StarkNetCursor, v1alpha2, FieldElement } from "@apibara/starknet";
+import { connectedtodb } from "./dbconfig";
 import { Provider, constants } from "starknet";
 import * as dotenv from "dotenv";
-import { connectedtodb } from "./dbconfig";
+
+dotenv.config();
 
 async function main() {
-  const collection = await connectedtodb();
+  const { collection } = await connectedtodb();
   const client = new StreamClient({
     url: "https://sepolia.starknet.a5a.ch",
     token: process.env.APIBARA_TOKEN,
@@ -72,7 +68,7 @@ async function main() {
   }
 }
 
-export async function handleEvent(
+async function handleEvent(
   header: v1alpha2.IBlockHeader,
   event: v1alpha2.IEvent,
   collection: any
@@ -87,7 +83,6 @@ export async function handleEvent(
     guardian: guardianAddress,
     blockNumber: header.blockNumber,
     blockTimestamp: header.timestamp?.seconds?.toString(),
-    //transactionHash: FieldElement.toHex(event.receipt?.transactionHash ?? FieldElement.fromBigInt(BigInt(0))),
   };
 
   await collection.insertOne(eventData);
