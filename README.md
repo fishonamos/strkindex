@@ -1,8 +1,8 @@
-# Starknet Blockchain Indexer
+# Blockchain Indexer - StarkNet Africa NodeJs Assessment
 
 ## Overview
 
-This is a blockchain indexer that listens for AccountCreated event emmited by Argents Account Contrcat. It captures relevant owner and guardian owner, stores them in a MongoDB database, and exposes the indexed data through a GraphQL API. 
+This is a blockchain indexer that listens for AccountCreated event emmited by Argents Account Contract. It captures owner and guardian owner, stores them in a MongoDB database, and exposes the indexed data through a GraphQL API. 
 
 ## Features
 
