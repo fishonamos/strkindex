@@ -33,7 +33,7 @@ This is a blockchain indexer that listens for AccountCreated event emmited by Ar
 
 ### Environment Variables
 
-Create a `.env` file in the root directory of your project and populate it with the following variables:
+Create a `.env` file in the root directory of the project and populate it with the following variables:
 
 ```plaintext
 MONGODB_URI=<Your MongoDB connection string>
