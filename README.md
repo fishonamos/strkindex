@@ -1,4 +1,4 @@
-```markdown
+```markdown``
 # Starknet Blockchain Indexer
 
 ## Overview
