@@ -36,7 +36,7 @@ async function main() {
 
   // Define the event key for filtering events based on event signature
   const eventKey = FieldElement.fromBigInt(
-    BigInt("0x00ee59834e6bbedb5dc7d363bc13b42ac655d67bd871dea6c2f75f281c42d0ff")
+    BigInt("0x00ee59834e6bbedb5dc7d363bc13b42ac655d67bd871dea6c2f75f281c42d0ff_0")
   );
 
   // Define the contract address from which to listen to events
