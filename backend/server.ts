@@ -81,7 +81,7 @@ async function startServer() {
     const server = new ApolloServer({
       typeDefs,
       resolvers,
-      context: async () => ({ collection }), // Pass the MongoDB collection to the context
+      context: async () => ({ collection }),
     });
 
     server.listen().then(({ url }) => {
