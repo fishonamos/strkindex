@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
-
+    "test": "jest",
+    "start:indexer": "ts-node ./backend/indexer.ts",
+    "start:server": "ts-node ./backend/server.ts",
+    "start:both": "concurrently \"yarn start:indexer\" \"yarn start:server\""
   },
   "keywords": [],
   "author": "",
@@ -24,8 +26,10 @@
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
+    "concurrently": "^8.2.2",
     "jest": "^29.7.0",
     "mongodb-memory-server": "^10.0.0",
-    "ts-jest": "^29.2.4"
+    "ts-jest": "^29.2.4",
+    "typescript": "^5.5.4"
   }
 }
