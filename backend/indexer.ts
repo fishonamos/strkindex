@@ -6,19 +6,15 @@ import { contractAddress } from "./utils/utils";
 import { eventKey } from "./utils/utils";
 
 dotenv.config();
-
 async function main() {
   console.log("Starting the indexer...");
 
   // Connect to the MongoDB database
   const { collection } = await connectedtodb();
 
-
   // Get the latest block number from the StarkNet provider
   const { block_number } = await provider.getBlockLatestAccepted();
   console.log(`Latest block number: ${block_number}`);
-
-
 
   // Create a filter to listen to specific events from the contract
   const filter = Filter.create()
@@ -83,7 +79,6 @@ async function handleEvent(
   await collection.insertOne(eventData);
   console.log("Event data saved to MongoDB:", eventData);
 }
-
 // Start the indexer by calling the main function
 main()
   .then(() => console.log("Indexer running"))
