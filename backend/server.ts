@@ -14,13 +14,11 @@ async function startServer() {
     if (!collection) {
       throw new Error('Failed to connect to the database');
     }
-
     const server = new ApolloServer({
       typeDefs,
       resolvers,
       context: async () => ({ collection }),
     });
-
 
     await server.listen({ port: process.env.PORT || 4000 }); {
       console.log(`Server ready at http://localhost:${port}`);
@@ -30,6 +28,5 @@ async function startServer() {
     console.error('Failed to start GraphQL server', error);
   }
 }
-
 // Invoke the function to start the server
 startServer();
