@@ -4,6 +4,8 @@
 
 This is a blockchain indexer that listens for AccountCreated event emmited by Argents Account Contract. It captures owner and guardian owner, stores them in a MongoDB database, and exposes the indexed data through a GraphQL API. 
 
+## Updated Version 2 Here => https://github.com/fishonamos/strkindex/tree/apiv2
+
 ## Features
 
 - **Blockchain Event Listener**
