@@ -1,20 +1,11 @@
-import { ApolloServer } from 'apollo-server-express';
+import { ApolloServer} from 'apollo-server';
 import * as dotenv from 'dotenv';
 import { connectedtodb } from './db/dbconfig';
 import { typeDefs } from './models/schema';
-import { resolvers } from './resolvers/resolvers';
-import express from 'express';
-import path from 'path';
+import {resolvers} from './resolvers/resolvers'
 
 dotenv.config();
 const port = process.env.PORT || 4000;
-
-const app = express();
-
-// Serve the custom landing page
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'landing.html'));
-});
 
 // Start the Apollo Server
 async function startServer() {
@@ -30,12 +21,11 @@ async function startServer() {
       context: async () => ({ collection }),
     });
 
-    await server.start(); // Start the Apollo Server
-    server.applyMiddleware({ app }); 
 
-    app.listen(port, () => {
-      console.log(`🚀 Server ready at http://localhost:${port}${server.graphqlPath}`);
-    });
+    await server.listen({ port: process.env.PORT || 4000 }); {
+      console.log(`Server ready at http://localhost:${port}`);
+    }
+
   } catch (error) {
     console.error('Failed to start GraphQL server', error);
   }
