@@ -3,6 +3,7 @@ import { Filter, StarkNetCursor, v1alpha2, FieldElement } from "@apibara/starkne
 import { connectedtodb } from './db/dbconfig';
 import { RpcProvider, constants } from "starknet";
 import * as dotenv from "dotenv";
+import {client, provider} from './utils/utils'
 
 dotenv.config();
 
@@ -12,23 +13,6 @@ async function main() {
   // Connect to the MongoDB database
   const { collection } = await connectedtodb();
 
-  // APIBARA Stream Client Configuration
-  const client = new StreamClient({
-    url: "mainnet.starknet.a5a.ch", 
-    token: process.env.APIBARA_TOKEN,
-    async onReconnect(err, retryCount) {
-      // Handling reconnections
-      console.log("Reconnecting...", err, retryCount);
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      return { reconnect: true };
-    },
-  });
-  
-  // StarkNet RPC provider
-  const provider = new RpcProvider({
-    nodeUrl: "https://free-rpc.nethermind.io/sepolia-juno/",
-    chainId: constants.StarknetChainId.SN_MAIN
-  });
 
   // Get the latest block number from the StarkNet provider
   const { block_number } = await provider.getBlockLatestAccepted();
