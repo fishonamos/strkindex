@@ -1,5 +1,6 @@
 import { StreamClient } from "@apibara/protocol";
 import { RpcProvider, constants } from "starknet";
+import { FieldElement } from "@apibara/starknet";
 
  
  // APIBARA Stream Client Configuration
@@ -19,3 +20,13 @@ import { RpcProvider, constants } from "starknet";
     nodeUrl: "https://free-rpc.nethermind.io/sepolia-juno/",
     chainId: constants.StarknetChainId.SN_MAIN
   });
+
+    // Define the event key for filtering events based on event signature
+    export const eventKey = FieldElement.fromBigInt(
+        BigInt("0x00ee59834e6bbedb5dc7d363bc13b42ac655d67bd871dea6c2f75f281c42d0ff")
+      );
+    
+      // Define the contract address from which to listen to events
+      export const contractAddress = FieldElement.fromBigInt(
+        BigInt("0x03d6b91fe45bfae46af10e08631448be318b5436a93e4ed2ef3a9de52c442f79")
+      );

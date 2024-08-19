@@ -1,9 +1,9 @@
-import { StreamClient } from "@apibara/protocol";
 import { Filter, StarkNetCursor, v1alpha2, FieldElement } from "@apibara/starknet";
 import { connectedtodb } from './db/dbconfig';
-import { RpcProvider, constants } from "starknet";
 import * as dotenv from "dotenv";
 import {client, provider} from './utils/utils'
+import { contractAddress } from "./utils/utils";
+import { eventKey } from "./utils/utils";
 
 dotenv.config();
 
@@ -18,15 +18,7 @@ async function main() {
   const { block_number } = await provider.getBlockLatestAccepted();
   console.log(`Latest block number: ${block_number}`);
 
-  // Define the event key for filtering events based on event signature
-  const eventKey = FieldElement.fromBigInt(
-    BigInt("0x00ee59834e6bbedb5dc7d363bc13b42ac655d67bd871dea6c2f75f281c42d0ff_0")
-  );
 
-  // Define the contract address from which to listen to events
-  const contractAddress = FieldElement.fromBigInt(
-    BigInt("0x03d6b91fe45bfae46af10e08631448be318b5436a93e4ed2ef3a9de52c442f79")
-  );
 
   // Create a filter to listen to specific events from the contract
   const filter = Filter.create()
