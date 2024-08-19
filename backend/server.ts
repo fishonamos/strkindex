@@ -5,6 +5,7 @@ import { typeDefs } from './models/schema';
 import {resolvers} from './resolvers/resolvers'
 
 dotenv.config();
+const port = process.env.PORT || 4000;
 
 // Start the Apollo Server
 async function startServer() {
@@ -20,9 +21,11 @@ async function startServer() {
       context: async () => ({ collection }),
     });
 
-    server.listen().then(({ url }) => {
-      console.log(`🚀 Server ready at ${url}`);
-    });
+
+    await server.listen({ port: process.env.PORT || 4000 }); {
+      console.log(`Server ready at http://localhost:${port}`);
+    }
+
   } catch (error) {
     console.error('Failed to start GraphQL server', error);
   }
